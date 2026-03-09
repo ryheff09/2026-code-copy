@@ -15,6 +15,8 @@ import java.util.Queue;
 
 /** IO implementation for NavX. */
 public class GyroIONavX implements GyroIO {
+
+  //creates a new navX object (type of gyroscope) using the AHRS class
   private final AHRS navX =
       new AHRS(NavXComType.kMXP_SPI, (byte) DriveConstants.kOdometryFrequency);
   private final Queue<Double> yawPositionQueue;
@@ -25,10 +27,14 @@ public class GyroIONavX implements GyroIO {
     yawPositionQueue = PhoenixOdometryThread.getInstance().registerSignal(navX::getYaw);
   }
 
-  @Override
+  /** This method updates the inputs specified in the IO interface */
+  @Override 
   public void updateInputs(GyroIOInputs inputs) {
+    //checks if the navX is connected using the .isConnected method
     inputs.connected = navX.isConnected();
+    //converts the yaw position of the navX (using .getYaw) into rotation2d units from degrees
     inputs.yawPosition = Rotation2d.fromDegrees(-navX.getYaw());
+    //converts the yaw velocity of the navX from degrees to radians
     inputs.yawVelocityRadPerSec = Units.degreesToRadians(-navX.getRawGyroZ());
 
     inputs.odometryYawTimestamps =

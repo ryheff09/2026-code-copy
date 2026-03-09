@@ -10,7 +10,20 @@ package frc.robot.subsystems.drive;
 import edu.wpi.first.math.geometry.Rotation2d;
 import org.littletonrobotics.junction.AutoLog;
 
+/**
+ * This interface contains the class which contains the inputs to be logged as
+ * data for the gyro, the default method to update these inputs, and a default
+ * method to set the yaw (turning around the y axis, or the z axis of the WPILib
+ * coordinate system) of a swerve module.
+ */
 public interface GyroIO {
+
+  /**
+   * This class contains the following inputs to be logged as data: whether or not
+   * the gyroscope is connected, the yaw position, the yaw velocity, and the
+   * timestamps and positions for the robot odemetry (estimating the robot's
+   * position on the field, which uses the gyroscope)
+   */
   @AutoLog
   public static class GyroIOInputs {
     public boolean connected = false;
@@ -20,7 +33,9 @@ public interface GyroIO {
     public Rotation2d[] odometryYawPositions = new Rotation2d[] {};
   }
 
-  public default void updateInputs(GyroIOInputs inputs) {}
+  public default void updateInputs(GyroIOInputs inputs) {
+  }
 
-  public default void setYaw(Rotation2d angle) {}
+  public default void setYaw(Rotation2d angle) {
+  }
 }
