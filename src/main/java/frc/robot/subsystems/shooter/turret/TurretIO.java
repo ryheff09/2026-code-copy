@@ -43,7 +43,9 @@ public interface TurretIO {
     public Rotation2d closedLoopTarget = Rotation2d.kZero;
   }
 
+  /** This default method updates the inputs defined in the inputs class. */
   void updateInputs(TurretIOInputs inputs);
 
+  /** This default method applies the outputs defined in the outputs class. */
   void applyOutputs(TurretIOOutputs outputs);
 }

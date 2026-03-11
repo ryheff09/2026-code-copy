@@ -25,20 +25,25 @@ import java.util.function.DoubleSupplier;
 public class TurretIOSparkMax implements TurretIO {
   private final SparkMax motor;
   private final RelativeEncoder encoder;
-  private final SparkClosedLoopController motorController;
+  private final SparkClosedLoopController motorController; //creates an object for closed loop control, in this case pid
 
-  private final Debouncer connectedDebouncer = new Debouncer(0.5, DebounceType.kFalling);
+  private final Debouncer connectedDebouncer = new Debouncer(0.5, DebounceType.kFalling); 
+  //ensures that the button is let go of for 0.5 seconds before reading the signal as false; this eliminates noise or errors from triggering something unwanted.
 
   public TurretIOSparkMax(ShooterSide side) {
+    //takes the shooter side enum as a parameter which is defined in the shooter subsystem and combines the turret, hood, and flywheel subsystems (all of which together make 1 of 2 shooters)
+    //creates a NEO motor and sets its ID (defined in the constants file) depending on the shooter side parameter
     motor =
         new SparkMax(
             side == ShooterSide.LEFT ? DeviceIDs.kLeftTurretAzimuth : DeviceIDs.kRightTurretAzimuth,
             MotorType.kBrushless);
     encoder = motor.getEncoder();
+    //the closed loop controller is built in
     motorController = motor.getClosedLoopController();
 
     SparkMaxConfig config = new SparkMaxConfig();
 
+    //sets the idle mode of the turret motor (when it recieves 0 power) to coasting (the motor is moveable)
     config.idleMode(IdleMode.kCoast);
     // TODO: Tune
     config.inverted(side == ShooterSide.RIGHT);
