@@ -13,9 +13,13 @@ import frc.robot.subsystems.shooter.ShooterConstants.HoodConstants;
 import org.littletonrobotics.junction.Logger;
 
 public class Hood extends SubsystemBase {
+  //creating objects and initializing variables
+  //shooter side object, which again applies to all components of the shooter
   private final ShooterSide side;
 
+  //standard io interface object
   private final HoodIO io;
+  //standard autologged class
   private final HoodIOInputsAutoLogged inputs = new HoodIOInputsAutoLogged();
 
   private boolean atGoal = false;

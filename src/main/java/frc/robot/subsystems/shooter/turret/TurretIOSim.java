@@ -66,7 +66,7 @@ public class TurretIOSim implements TurretIO {
         pid.setSetpoint(outputs.closedLoopTarget.getRadians());
         appliedVolts = pid.calculate(sim.getAngularPositionRad());
       }
-      //in the case that the mode is changed to open loop, the applied voltage is set to 12 times the speed of the motor (ex 0.5 speed is 50%, which is equivalent to 6 out of 12 volts from the batter)
+      //in the case that the mode is changed to open loop, the applied voltage is set to 12 times the speed of the motor (ex 0.5 speed is 50%, which is equivalent to 6 out of 12 volts from the battery)
       case OPEN_LOOP -> {
         appliedVolts = 12.0 * outputs.openLoopOutput;
       }
