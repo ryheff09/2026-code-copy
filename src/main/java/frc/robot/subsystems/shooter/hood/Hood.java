@@ -25,9 +25,9 @@ public class Hood extends SubsystemBase {
   //the default value for whether or not the turret is at its goal is false, as it hasn't moved yet
   private boolean atGoal = false;
 
-  //A debouncer object which controls the boolean output of whether or not the turret is at its goal
-  //When the turret reaches its target and continues past it, it must remain as false for 0.2 seconds before the signal is actually read as false
-  //This ensures that the turret actually stops at its target and doesn't skip over it
+  //A debouncer object which controls the boolean output of whether or not the hood is at its goal
+  //When the hood reaches its target and continues past it, it must remain as false for 0.2 seconds before the signal is actually read as false
+  //This ensures that the hood actually stops at its target and doesn't skip over it
   //This time value is higher than that of the turret; is this because the hood moves faster?
   private Debouncer atGoalDebouncer = new Debouncer(0.2, DebounceType.kFalling);
 

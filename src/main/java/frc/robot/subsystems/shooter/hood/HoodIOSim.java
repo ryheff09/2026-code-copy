@@ -12,7 +12,7 @@ import frc.robot.subsystems.shooter.ShooterConstants.HoodConstants;
 public class HoodIOSim implements HoodIO {
   //standard gearbox object, creates a gearbox with 1 motor in it, in this case a neo 550 (lighter and less powerful than a regular neo)
   private final DCMotor gearbox = DCMotor.getNeo550(1);
-  //default simulation class initialization
+  //default simulation object initialization
   private final SingleJointedArmSim sim;
   
   //creates a pid controller with gains (these need to be tuned; see PID documentation for more details)

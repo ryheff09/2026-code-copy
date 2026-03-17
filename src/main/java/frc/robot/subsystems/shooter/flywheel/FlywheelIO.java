@@ -3,9 +3,12 @@ package frc.robot.subsystems.shooter.flywheel;
 import org.littletonrobotics.junction.AutoLog;
 
 public interface FlywheelIO {
+  //standard default update inputs method
   default void updateInputs(FlywheelIOInputs inputs) {}
 
   @AutoLog
+  //standard inputs class which is eventually autologged
+  //contains all the standard inputs (connected, velocity, voltage in volts, current in amps) and does not include a position value, because a flywheel just spins
   public static class FlywheelIOInputs {
     public boolean connected = false;
     public double velocityRadPerSec = 0.0;
@@ -23,5 +26,6 @@ public interface FlywheelIO {
   /** Run motor at the specified open loop value. */
   public default void setOpenLoop(double output) {}
 
+  //default method to stop the motor
   default void stop() {}
 }
