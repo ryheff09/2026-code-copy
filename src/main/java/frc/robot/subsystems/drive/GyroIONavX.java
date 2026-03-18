@@ -19,6 +19,7 @@ public class GyroIONavX implements GyroIO {
   //creates a new navX object (type of gyroscope) using the AHRS class
   private final AHRS navX =
       new AHRS(NavXComType.kMXP_SPI, (byte) DriveConstants.kOdometryFrequency);
+  //code no longer relevant
   private final Queue<Double> yawPositionQueue;
   private final Queue<Double> yawTimestampQueue;
 
@@ -30,6 +31,7 @@ public class GyroIONavX implements GyroIO {
   /** This method updates the inputs specified in the IO interface */
   @Override 
   public void updateInputs(GyroIOInputs inputs) {
+    //updates the values of the inputs using the following statements
     //checks if the navX is connected using the .isConnected method
     inputs.connected = navX.isConnected();
     //converts the yaw position of the navX (using .getYaw) into rotation2d units from degrees
@@ -37,6 +39,7 @@ public class GyroIONavX implements GyroIO {
     //converts the yaw velocity of the navX from degrees to radians
     inputs.yawVelocityRadPerSec = Units.degreesToRadians(-navX.getRawGyroZ());
 
+    //code no longer relevant
     inputs.odometryYawTimestamps =
         yawTimestampQueue.stream().mapToDouble((Double value) -> value).toArray();
     inputs.odometryYawPositions =
@@ -48,6 +51,8 @@ public class GyroIONavX implements GyroIO {
   }
 
   @Override
+  //default method to set the yaw of the navX gyro
+  //This works by automatically adjusting the yaw angle of the gyro by a given amount of degrees (parameter is a rotation2d, converted to degrees)
   public void setYaw(Rotation2d angle) {
     navX.setAngleAdjustment(angle.getDegrees());
   }

@@ -58,9 +58,11 @@ import frc.robot.util.FieldConstants;
 import java.util.List;
 
 public class RobotContainer {
+    //creates driver and aux controllers
   private final DriverController driver = new DriverController.XboxDriverController(0);
   private final DriverController operator = new DriverController.XboxDriverController(1);
 
+  //creates new subsystems for all robot functions
   private Drive drive;
   private Shooter leftShooter;
   private Shooter rightShooter;
@@ -70,8 +72,11 @@ public class RobotContainer {
   private Vision vision;
 
   public RobotContainer() {
+    //takes the current mode of the robot
     switch (Constants.kCurrentMode) {
+        //executes the following code if the robot mode is in real life
       case REAL:
+      //creates a new drivetrain with 4 swerve modules and a pigeon gyro
         drive =
             new Drive(
                 new GyroIOPigeon2(),
@@ -80,11 +85,13 @@ public class RobotContainer {
                 new ModuleIOTalonFX(TunerConstants.BackLeft),
                 new ModuleIOTalonFX(TunerConstants.BackRight));
         // vision = new Vision(null, null);
+        //creates a left shooter with a hood and flywheel
         leftShooter =
             new Shooter(
                 ShooterSide.LEFT,
                 new HoodIOSparkMax(ShooterSide.LEFT),
                 new FlywheelIOTalonFX(ShooterSide.LEFT));
+        //creates a right shooter with a hood and flywheel
         rightShooter =
             new Shooter(
                 ShooterSide.RIGHT,

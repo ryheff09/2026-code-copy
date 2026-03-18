@@ -23,6 +23,8 @@ public class TrajectoryCalculator {
   private static final double MIN_SHOOTING_DISTANCE = 1.5;
   private static final double MAX_SHOOTING_DISTANCE = 5.0;
 
+  //data run from tests which stores how long a piece of fuel is in the air for with certain flywheel velocities and hood angles
+  //used in the shooter subsystem to attempt to predict the trajectory of fuel
   static {
     shooterTable.put(1.5, new TrajectoryParams(2800.0, 35.0, 0.38));
     shooterTable.put(2.0, new TrajectoryParams(3100.0, 38.0, 0.45));
